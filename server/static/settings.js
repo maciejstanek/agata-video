@@ -1,0 +1,1 @@
+var interval = 100;

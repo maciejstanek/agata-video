@@ -1,0 +1,14 @@
+<link rel="stylesheet" type="text/css" href="/static/style.css">
+<p><b><a href="admin">admin</a></b></p>
+<p>video</p>
+<ul>
+    {% for name in video %}
+    <li><a href="video/{{ name }}">{{ name }}</a></li>
+    {% endfor %}
+</ul>
+<p>music</p>
+<ul>
+    {% for name in music %}
+    <li><a href="music/{{ name }}">{{ name }}</a></li>
+    {% endfor %}
+</ul>
