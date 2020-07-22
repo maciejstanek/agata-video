@@ -1,0 +1,9 @@
+Czy po włączeniu muzyki wideo ma startować od nowa czy od miejsca w którym była pauza? -- Stopklatka ma być
+
+Usunąć znak "play" z video pewnie. Najlepiej, żeby nie było też paska adresowego. Na kompie można po prostu dać F11.
+
+Dodać jakiś timer który będzie to autoamtycznie przełączać czasowo.
+
+Dodać instrukcje dla Agaty które przypomną jej jak tego używać.
+
+Zapakować projekt w kontener VM. Ogarnąć Agacie program do VM. Pamietać o przekierowaniu portów.
