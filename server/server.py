@@ -13,7 +13,11 @@ app = Flask(__name__)
 def index():
     resources = {}
     for resource_type in ['video', 'music']:
-        resources[resource_type] = [Path(resource).stem for resource in glob('static/{0}/*'.format(resource_type))]
+        resources[resource_type] = set([Path(resource).stem for resource in glob('static/{0}/*'.format(resource_type))])
+        try:
+            resources[resource_type].remove('Makefile')
+        except:
+            pass
     return render_template('index.html', **resources)
 
 @app.route('/video/<name>')
