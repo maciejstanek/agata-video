@@ -5,7 +5,7 @@ from flask import render_template
 from flask import url_for
 from glob import glob
 from pathlib import Path
-from flask import send_from_directory
+import socket
 
 app = Flask(__name__)
 
@@ -26,7 +26,8 @@ def music(name):
 
 @app.route('/admin')
 def admin():
-    return render_template('admin.html')
+    ip = socket.gethostbyname(socket.gethostname())
+    return render_template('admin.html', ip=ip)
 
 state = None
 
