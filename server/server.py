@@ -10,6 +10,9 @@ import os
 import socket
 from flask import request
 from pytimeparse.timeparse import timeparse
+import threading
+import sched
+import time
 
 app = Flask(__name__)
 
@@ -52,18 +55,63 @@ def api(command):
     if command == 'status':
         return 'init' if state is None else state
 
-@app.route('/automation')
-def automation():
+automation_audio_time = None
+automation_period = None
+automation_timer = None
+automation_timer2 = None
+
+def automation_period_action():
+    print("TIMER START AUDIO")
     global state
-    command = request.args.get('command', default='stop')
-    if command == 'start':
+    global automation_timer
+    global automation_period
+    global automation_timer2
+    global automation_audio_time
+    automation_timer = threading.Timer(automation_period, automation_period_action)
+    automation_timer.start()
+    automation_timer2 = threading.Timer(automation_audio_time, automation_audio_time_action)
+    automation_timer2.start()
+    state = 'music'
+
+def automation_audio_time_action():
+    print("TIMER START VIDEO")
+    global state
+    state = 'video'
+
+@app.route('/automation/<command>')
+def automation(command):
+    global state
+    global automation_period
+    global automation_audio_time
+    global automation_timer
+    global automation_timer2
+    result = {}
+    if command == 'status':
+        result = {
+            'audio_time': str(automation_audio_time),
+            'period': str(automation_period),
+        }
+    elif command == 'start':
         audio_time_string = request.args.get('audio_time', default='5s')
         period_string = request.args.get('period', default='10s')
-        audio_time = timeparse(audio_time_string)
-        period = timeparse(period_string)
-        print(audio_time)
-        print(period)
-        return "1"
+        automation_audio_time = timeparse(audio_time_string)
+        automation_period = timeparse(period_string)
+        print("automation_audio_time {}".format(automation_audio_time))
+        print("automation_period {}".format(automation_period))
+        if automation_timer:
+            automation_timer.cancel()
+        if automation_timer2:
+            automation_timer2.cancel()
+        automation_period_action()
     else:
-        return "0"
+        automation_period = None
+        if automation_timer:
+            automation_timer.cancel()
+            automation_timer = None
+        automation_audio_time = None
+        if automation_timer2:
+            automation_timer2.cancel()
+            automation_timer2 = None
+        state = 'reset'
+    return result
 

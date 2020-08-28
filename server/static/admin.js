@@ -17,13 +17,17 @@ $(function() {
       }
       $('#status').text(translations[data])
     })
+    $.get('/automation/status', function(data, status) {
+      $('#automation_status').text(JSON.stringify(data))
+    })
   }, interval)
 })
 function automation_start() {
-  $.get('/automation?command=start')
-  // automation_period
-  // automation_audio_time
+  $.get('/automation/start', {
+    period: $('#automation_period').val(),
+    audio_time: $('#automation_audio_time').val()
+  })
 }
 function automation_stop() {
-  $.get('/automation?command=stop')
+  $.get('/automation/stop')
 }
