@@ -19,3 +19,11 @@ $(function() {
     })
   }, interval)
 })
+function automation_start() {
+  $.get('/automation?command=start')
+  // automation_period
+  // automation_audio_time
+}
+function automation_stop() {
+  $.get('/automation?command=stop')
+}

@@ -8,6 +8,8 @@ from pathlib import Path
 from flask import send_from_directory
 import os
 import socket
+from flask import request
+from pytimeparse.timeparse import timeparse
 
 app = Flask(__name__)
 
@@ -49,3 +51,19 @@ def api(command):
         return state
     if command == 'status':
         return 'init' if state is None else state
+
+@app.route('/automation')
+def automation():
+    global state
+    command = request.args.get('command', default='stop')
+    if command == 'start':
+        audio_time_string = request.args.get('audio_time', default='5s')
+        period_string = request.args.get('period', default='10s')
+        audio_time = timeparse(audio_time_string)
+        period = timeparse(period_string)
+        print(audio_time)
+        print(period)
+        return "1"
+    else:
+        return "0"
+

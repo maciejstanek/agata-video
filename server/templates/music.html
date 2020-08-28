@@ -1,11 +1,11 @@
 <title>Audio "{{ name }}"</title>
 <link rel="stylesheet" type="text/css" href="/static/style.css">
-<div>Ta strona odtwarza audio "{{ name }}".</div>
+<p>Ta strona odtwarza audio "{{ name }}".</p>
 <audio> <!-- No 'loop' and 'controls' attributes -->
     <source src="/static/music/{{ name }}.ogg" type="audio/ogg">
     <source src="/static/music/{{ name }}.mp3" type="audio/mpeg">
 </audio>
-<div><a href="/">Powrót</a></div>
+<p><a href="/">Powrót</a></p>
 <script type="text/javascript" src="/static/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="/static/settings.js"></script>
 <script type="text/javascript" src="/static/music.js"></script>

@@ -1,22 +1,16 @@
 <title>Praca dyplomowa</title>
 <link rel="stylesheet" type="text/css" href="/static/style.css">
-<div>
-  <h2>Panel kontrolny</h2>
-  <div><a href="admin">Panel kontrolny</a></div>
-</div>
-<div>
-  <h2>Klipy wideo</h2>
-  <ul>
-      {% for name in video %}
-      <li><a href="video/{{ name }}">{{ name }}</a></li>
-      {% endfor %}
-  </ul>
-</div>
-<div>
-  <h2>Piki audio</h2>
-  <ul>
-      {% for name in music %}
-      <li><a href="music/{{ name }}">{{ name }}</a></li>
-      {% endfor %}
-  </ul>
-</div>
+<h2>Panel kontrolny</h2>
+<p><a href="admin">Panel kontrolny</a></p>
+<h2>Klipy wideo</h2>
+<ul>
+    {% for name in video %}
+    <li><a href="video/{{ name }}">{{ name }}</a></li>
+    {% endfor %}
+</ul>
+<h2>Piki audio</h2>
+<ul>
+    {% for name in music %}
+    <li><a href="music/{{ name }}">{{ name }}</a></li>
+    {% endfor %}
+</ul>
