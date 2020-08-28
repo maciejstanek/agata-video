@@ -4,10 +4,10 @@ run: server.py music video
 	FLASK_APP=$< flask run --port=2137 --host=0.0.0.0
 
 music:
-	(cd static/music && make)
+	# (cd static/music && make)
 
 video:
-	(cd static/video && make)
+	# (cd static/video && make)
 
 clean:
 	rm -rf __pycache__

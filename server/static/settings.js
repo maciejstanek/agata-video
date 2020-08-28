@@ -1,1 +1,1 @@
-var interval = 100;
+var interval = 300;
