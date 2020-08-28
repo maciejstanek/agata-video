@@ -1,9 +1,12 @@
+<title>Panel kontrolny</title>
 <link rel="stylesheet" type="text/css" href="/static/style.css">
-<div class="admin"><button onclick="api_music()">start music</button></div>
-<div class="admin"><button onclick="api_video()">start videos</button></div>
-<div class="admin"><button onclick="api_reset()">reset</button></div>
-<div class="admin">status: <span id="status"></span></div>
-<div class="admin">ip: <span id="ip">{{ ip }}</span></div>
+<h2>Panel kontrolny</h2>
+<div class="admin">Aktualny status: <span id="status"></span></div>
+<div class="admin">Adres IP: <span id="ip">{{ ip }}</span></div>
+<div class="admin"><a href="/">Powrót</a></div>
+<div class="admin"><button onclick="api_music()">Uruchom audio</button></div>
+<div class="admin"><button onclick="api_video()">Uruchom wideo</button></div>
+<div class="admin"><button onclick="api_reset()">Zatrzymaj wszystko</button></div>
 <script type="text/javascript" src="/static/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="/static/settings.js"></script>
 <script type="text/javascript" src="/static/admin.js"></script>

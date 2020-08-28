@@ -10,7 +10,12 @@ function api_reset() {
 $(function() {
   setInterval(function() {
     $.get('/api/status', function(data, status) {
-      $('#status').text(data)
+      translations = {
+        "video": "odtwarzanie wideo",
+        "music": "odtwarzanie audio",
+        "reset": "odtwarzanie zatrzymane",
+      }
+      $('#status').text(translations[data])
     })
   }, interval)
 })

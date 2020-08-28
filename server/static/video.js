@@ -1,4 +1,7 @@
 $(function() {
+  $("*").click(function() {
+    $("video").get(0).play();
+  });
   setInterval(function() {
     $.get('/api/status', function(data, status) {
       var video = $('video').get(0)

@@ -1,9 +1,14 @@
 $(function() {
+  // $("*").click(function() {
+  //   $("audio").get(0).play();
+  // });
   setInterval(function() {
     $.get('/api/status', function(data, status) {
       var music = $('audio').get(0)
       if (data == 'music') {
-        music.play()
+        if (music.currentTime == 0) {
+          music.play()
+        }
       }
       else if (data == 'reset') {
         music.pause()
@@ -11,6 +16,8 @@ $(function() {
       }
       else {
         music.pause()
+        // Music should go back ot start when restarting.
+        music.currentTime = 0;
       }
     })
   }, interval)

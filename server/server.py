@@ -5,6 +5,8 @@ from flask import render_template
 from flask import url_for
 from glob import glob
 from pathlib import Path
+from flask import send_from_directory
+import os
 import socket
 
 app = Flask(__name__)
@@ -20,6 +22,10 @@ def index():
             pass
     return render_template('index.html', **resources)
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
+
 @app.route('/video/<name>')
 def video(name):
     return render_template('video.html', name=name)
@@ -33,7 +39,7 @@ def admin():
     ip = socket.gethostbyname(socket.gethostname())
     return render_template('admin.html', ip=ip)
 
-state = None
+state = 'reset'
 
 @app.route('/api/<command>')
 def api(command):
