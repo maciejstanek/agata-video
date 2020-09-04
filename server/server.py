@@ -78,6 +78,22 @@ def automation_audio_time_action():
     global state
     state = 'video'
 
+def stop_automation():
+    global automation_period
+    global automation_timer
+    global automation_audio_time
+    global automation_timer2
+    global reset
+    automation_period = None
+    if automation_timer:
+        automation_timer.cancel()
+        automation_timer = None
+    automation_audio_time = None
+    if automation_timer2:
+        automation_timer2.cancel()
+        automation_timer2 = None
+    state = 'reset'
+
 @app.route('/automation/<command>')
 def automation(command):
     global state
@@ -104,14 +120,6 @@ def automation(command):
             automation_timer2.cancel()
         automation_period_action()
     else:
-        automation_period = None
-        if automation_timer:
-            automation_timer.cancel()
-            automation_timer = None
-        automation_audio_time = None
-        if automation_timer2:
-            automation_timer2.cancel()
-            automation_timer2 = None
-        state = 'reset'
+        stop_automation()
     return result
 

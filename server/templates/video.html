@@ -1,9 +1,9 @@
-<meta name="viewport" content="width=device-width, user-scalable=no">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, viewport-fit=cover">
 <title>Wideo "{{ name }}"</title>
 <link rel="stylesheet" type="text/css" href="/static/style.css">
-<video loop> <!-- No 'controls' tag -->
-    <source src="/static/video/{{ name }}.ogg" type="video/ogg">
+<video loop autoplay> <!-- No 'controls' tag -->
     <source src="/static/video/{{ name }}.mp4" type="video/mp4">
+    <source src="/static/video/{{ name }}.ogg" type="video/ogg">
 </video>
 <script type="text/javascript" src="/static/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="/static/settings.js"></script>
